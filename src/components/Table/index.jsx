@@ -24,11 +24,7 @@ const Table = (props) => {
     if (starting) return
     updateMonthOptions()
     updateMonthRecords()
-  }, [props.habits])
-  
-  useEffect(() => {
-    if (!starting) updateMonthRecords()
-  }, [props.records])
+  }, [props.habits, props.records])
 
   useEffect(() => {
     if (!starting) updateDataRows()
@@ -70,7 +66,6 @@ const Table = (props) => {
     let optionText = getDateOptionString(props.habits[0].createdAt)
     let optionRange = getMonthRange(props.habits[0].createdAt)
     const options = { [optionText]: optionRange }
-
     while (optionText != currentMonthString) {
       const followingMonth = optionRange.toDate
       optionText = getDateOptionString(followingMonth)
@@ -110,6 +105,8 @@ const Table = (props) => {
 
     props.setQuerying(true)
     const token = props.demoMode ? null : await getAccessTokenSilently()
+    // console.log('Calling API');
+    
     const { error, message, data } = await GetRecords({ token, from: fromDate, to: toDate }, { demoMode: props.demoMode })
     props.setQuerying(false)
 
@@ -209,7 +206,7 @@ const Table = (props) => {
       text='Add Habit'
       modifiers={props.habits.length == 0
         ? ['primary', 'w-lg', 'mx-auto', 'pulse']
-        : ['sticky-left', 'w-full']
+        : ['sticky-left', 'w-full', 'mt-4']
       }
       />
     </div>

@@ -41,7 +41,7 @@ const TableRow = ({
         onClick={() => openRecordForm(cell)}
         disabled={cell.isFutureDate || cell.isBeforeHabitCreation || querying}
         text=''
-        modifiers={['w-full', 'h-full', 'mt-4', cell.record ? 'marked' : '']}
+        modifiers={['w-full', 'h-full', cell.record ? 'marked' : '']}
         />
     </td>
   ))}
