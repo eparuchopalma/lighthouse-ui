@@ -9,11 +9,14 @@ export function GetHabit({ token }, { demoMode }) {
       message: 'Welcome!',
       data,
     }))
-    .catch((error) => Object({
-      error: true,
-      message: errorMessage(error),
-      data: null,
-    }))
+    .catch((error) => {
+      console.error(error);
+      return Object({
+        error: true,
+        message: errorMessage(error),
+        data: null,
+      })
+    })
 }
 
 export function CreateHabit({ token, values }, { demoMode }) {
@@ -24,11 +27,14 @@ export function CreateHabit({ token, values }, { demoMode }) {
       message: 'Done: Habit created',
       data,
     }))
-    .catch((error) => Object({
-      error: true,
-      message: errorMessage(error),
-      data: null,
-    }))
+    .catch((error) => {
+      console.error(error);
+      return Object({
+        error: true,
+        message: errorMessage(error),
+        data: null,
+      })
+    })
 }
 
 export function UpdateHabit({ token, habitID, values }, { demoMode }) {
